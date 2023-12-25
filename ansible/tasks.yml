@@ -11,5 +11,5 @@
   tags: tinc
 
 - name: Setup strongswan
-  import_rule: name=setup_strongswan
+  import_role: name=setup_strongswan
   tags: swan
