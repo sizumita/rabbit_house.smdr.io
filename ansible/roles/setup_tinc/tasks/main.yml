@@ -17,6 +17,11 @@
     src: gsnet/tinc.conf
     dest: /etc/tinc/gsnet/
 
+- name: Copy nat.iptables
+  copy:
+    src: gsnet/nat.iptables
+    dest: /etc/tinc/gsnet/
+
 - name: Copy tinc-up
   copy:
     src: gsnet/tinc-up
