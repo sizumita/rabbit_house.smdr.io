@@ -17,3 +17,44 @@
     dest: /etc/swanctl/
     mode: 0644
   become: true
+
+- name: Copy ca cert
+  copy:
+    src: certificate/strongSwan/ca-cert.pem
+    dest: /etc/swanctl/x509ca/
+    mode: 0700
+  become: true
+
+- name: Copy server cert
+  copy:
+    src: certificate/strongSwan/server-cert.pem
+    dest: /etc/swanctl/x509/
+    mode: 0700
+  become: true
+
+- name: Reload strongSwan
+  command:
+    cmd: swanctl --load-all
+
+- name: Allow port 500
+  ufw:
+    rule: allow
+    state: enabled
+    proto: udp
+    to_port: 500
+
+- name: Allow port 4500
+  ufw:
+    rule: allow
+    state: enabled
+    proto: udp
+    to_port: 4500
+
+- name: Change iptables
+  iptables:
+    comment: Route gsnet
+    jump: MASQUERADE
+    table: nat
+    action: append
+    destination: 10.0.0.0/8
+    out_interface: br0

@@ -5,3 +5,4 @@
 ## setup
 
 - ansible/files/certificate/rsa_key.privを作る
+- bash create-certs.sh
