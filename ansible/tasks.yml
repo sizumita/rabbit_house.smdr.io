@@ -9,3 +9,7 @@
 - name: Setup tinc
   import_role: name=setup_tinc
   tags: tinc
+
+- name: Setup strongswan
+  import_rule: name=setup_strongswan
+  tags: swan
