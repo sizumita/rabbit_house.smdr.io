@@ -10,3 +10,10 @@
       - libcharon-extauth-plugins
     state: present
   become: true
+
+- name: Copy swanctl.conf
+  copy:
+    src: strongswan/swanctl.conf
+    dest: /etc/swanctl/
+    mode: 0644
+  become: true
