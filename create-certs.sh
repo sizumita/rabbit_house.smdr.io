@@ -7,6 +7,6 @@ sudo ipsec pki --pub --in ./ansible/files/certificate/strongSwan/server-key.pem 
   | pki --issue --lifetime 1825 \
   --cacert ./ansible/files/certificate/strongSwan/ca-cert.pem \
   --cakey ./ansible/files/certificate/strongSwan/ca-key.pem \
-  --dn "CN=rabbit_house.smdr.io" --san rabbit_house.smdr.io \
+  --dn "CN=rabbit-house.smdr.io" --san rabbit-house.smdr.io \
   --flag serverAuth --flag ikeIntermediate --outform pem \
   > ./ansible/files/certificate/strongSwan/server-cert.pem
