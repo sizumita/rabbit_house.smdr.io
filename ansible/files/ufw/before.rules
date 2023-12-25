@@ -29,8 +29,8 @@ COMMIT
 # End required lines
 
 ###
--A ufw-before-forward --match policy --pol ipsec --dir in --proto esp -s 192.168.222.0/24 -j ACCEPT
--A ufw-before-forward --match policy --pol ipsec --dir out --proto esp -d 192.168.222.0/24 -j ACCEPT
+-A ufw-before-forward --match policy --pol ipsec --dir in --proto esp -s 172.16.10.0/24 -j ACCEPT
+-A ufw-before-forward --match policy --pol ipsec --dir out --proto esp -d 172.16.10.0/24 -j ACCEPT
 ###
 
 # allow all on loopback
