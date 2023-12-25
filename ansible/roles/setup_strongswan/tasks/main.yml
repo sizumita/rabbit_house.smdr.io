@@ -33,6 +33,13 @@
     mode: 0700
   become: true
 
+- name: Copy server key
+  copy:
+    src: certificate/strongSwan/server-key.pem
+    dest: /etc/swanctl/private/
+    mode: 0700
+  become: true
+
 - name: Reload strongSwan
   command:
     cmd: swanctl --load-all
