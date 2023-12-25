@@ -8,6 +8,7 @@
       - libstrongswan-extra-plugins
       - libcharon-extra-plugins
       - libcharon-extauth-plugins
+      - libtss2-tcti-tabrmd0
     state: present
   become: true
 
@@ -49,12 +50,3 @@
     state: enabled
     proto: udp
     to_port: 4500
-
-- name: Change iptables
-  iptables:
-    comment: Route gsnet
-    jump: MASQUERADE
-    table: nat
-    action: append
-    destination: 10.0.0.0/8
-    out_interface: br0
