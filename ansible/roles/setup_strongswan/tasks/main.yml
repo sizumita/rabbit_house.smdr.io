@@ -40,13 +40,6 @@
     mode: 0700
   become: true
 
-- name: Copy ca key
-  copy:
-    src: certificate/strongSwan/ca-key.pem
-    dest: /etc/swanctl/private/
-    mode: 0700
-  become: true
-
 - name: Reload strongSwan
   command:
     cmd: swanctl --load-all
