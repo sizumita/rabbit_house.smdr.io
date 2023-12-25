@@ -40,6 +40,13 @@
     mode: 0700
   become: true
 
+- name: Copy client cert
+  copy:
+    src: certificate/strongSwan/client-cert.pem
+    dest: /etc/swanctl/pubkey/
+    mode: 0700
+  become: true
+
 - name: Reload strongSwan
   command:
     cmd: swanctl --load-all

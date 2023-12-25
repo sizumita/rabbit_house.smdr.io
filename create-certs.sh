@@ -25,4 +25,4 @@ openssl pkcs12 -export -name "Rabbit House VPN Certificate" \
   -in ./ansible/files/certificate/strongSwan/client-cert.pem \
   -certfile ./ansible/files/certificate/strongSwan/ca-cert.pem \
   -caname "Rabbit House VPN root CA" \
-  -out Client.p12
+  -out Client.p12 -legacy
