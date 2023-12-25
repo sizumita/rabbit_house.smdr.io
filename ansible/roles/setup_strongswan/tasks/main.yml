@@ -40,10 +40,10 @@
     mode: 0700
   become: true
 
-- name: Copy client cert
+- name: Copy ca key
   copy:
-    src: certificate/strongSwan/client-cert.pem
-    dest: /etc/swanctl/pubkey/
+    src: certificate/strongSwan/ca-key.pem
+    dest: /etc/swanctl/private/
     mode: 0700
   become: true
 
