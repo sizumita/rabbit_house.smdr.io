@@ -1,0 +1,12 @@
+---
+- name: Install strongswan
+  ansible.builtin.apt:
+    name:
+      - strongswan
+      - strongswan-pki
+      - strongswan-swanctl
+      - libstrongswan-extra-plugins
+      - libcharon-extra-plugins
+      - libcharon-extauth-plugins
+    state: present
+  become: true

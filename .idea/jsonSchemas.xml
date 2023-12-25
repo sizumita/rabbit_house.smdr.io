@@ -17,6 +17,9 @@
                   <Item>
                     <option name="path" value="ansible/roles/setup_tinc/tasks/main.yml" />
                   </Item>
+                  <Item>
+                    <option name="path" value="ansible/roles/setup_strongswan/tasks/main.yml" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
