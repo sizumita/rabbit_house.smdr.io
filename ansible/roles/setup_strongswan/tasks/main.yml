@@ -87,6 +87,5 @@
   become: true
 
 - name: Restart ufw
-  command:
-    cmd: ufw reload
-  become: true
+  ufw:
+    state: enabled
