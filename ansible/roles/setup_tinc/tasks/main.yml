@@ -1,0 +1,49 @@
+---
+- name: Install tinc
+  ansible.builtin.apt:
+    name:
+      - tinc
+      - iptables
+    state: present
+  become: true
+
+- name: Create directory
+  ansible.builtin.file:
+    path: /etc/tinc/gsnet
+    state: directory
+
+- name: Copy tinc.conf
+  copy:
+    src: gsnet/tinc.conf
+    dest: /etc/tinc/gsnet/
+
+- name: Copy tinc-up
+  copy:
+    src: gsnet/tinc-up
+    dest: /etc/tinc/gsnet/
+    mode: 0755
+  become: true
+
+- name: Copy tinc-down
+  copy:
+    src: gsnet/tinc-down
+    dest: /etc/tinc/gsnet/
+    mode: 0755
+  become: true
+
+- name: Copy certificate
+  copy:
+    src: certificate/rsa_key.priv
+    dest: /etc/tinc/gsnet/
+    mode: 600
+  become: true
+
+- name: Copy hosts
+  copy:
+    src: gsnet/hosts/
+    dest: /etc/tinc/gsnet/hosts/
+
+- name: Enable tinc
+  systemd:
+    name: tinc@gsnet.service
+    enabled: true

@@ -1,0 +1,6 @@
+---
+- name: Deploy gsnet and vpn
+  hosts: localhost
+  connection: local
+  tasks:
+    - include: tasks.yml

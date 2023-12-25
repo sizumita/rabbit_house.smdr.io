@@ -1,0 +1,11 @@
+---
+- name: Update package manager
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: yes
+    state: latest
+  become: yes
+
+- name: Setup tinc
+  import_role: name=setup_tinc
+  tags: tinc
