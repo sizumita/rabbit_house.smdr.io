@@ -86,14 +86,6 @@
     mode: 0644
   become: true
 
-- name: Add port forwarding for os
-  blockinfile:
-    path: /etc/sysctl.conf
-    block: |
-      net.ipv4.ip_forward=1
-    state: present
-  become: true
-
 - name: Restart ufw
   command:
     cmd: ufw reload
