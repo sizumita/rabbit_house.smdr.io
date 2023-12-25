@@ -47,3 +47,10 @@
   systemd:
     name: tinc@gsnet.service
     enabled: true
+
+- name: Allow port
+  ufw:
+    rule: allow
+    state: enabled
+    proto: any
+    to_port: 655
