@@ -71,3 +71,15 @@
     state: enabled
     proto: udp
     to_port: 4500
+
+- name: Copy ufw's before.rules
+  copy:
+    src: ufw/before.rules
+    dest: /etc/ufw/before.rules
+    mode: 0640
+  become: true
+
+- name: Restart ufw
+  command:
+    cmd: ufw reload
+  become: true
