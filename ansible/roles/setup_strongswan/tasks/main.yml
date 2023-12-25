@@ -72,11 +72,18 @@
     proto: udp
     to_port: 4500
 
-- name: Copy ufw's before.rules
+- name: Copy ufw before.rules
   copy:
     src: ufw/before.rules
-    dest: /etc/ufw/before.rules
+    dest: /etc/ufw/
     mode: 0640
+  become: true
+
+- name: Copy ufw sysctl.conf
+  copy:
+    src: ufw/sysctl.conf
+    dest: /etc/ufw/
+    mode: 0644
   become: true
 
 - name: Restart ufw
