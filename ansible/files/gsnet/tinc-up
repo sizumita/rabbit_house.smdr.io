@@ -7,3 +7,4 @@ ip link set dev eth1 master br0
 ip addr add 10.22.0.1/8 dev br0
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables-restore < /etc/tinc/gsnet/nat.iptables
+swanctl --load-all
