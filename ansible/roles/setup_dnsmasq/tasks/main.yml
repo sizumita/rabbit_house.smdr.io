@@ -28,7 +28,7 @@
 
 - name: Write resolved conf
   blockinfile:
-    path: /etc/dnsmasq.conf
+    path: /etc/systemd/resolved.conf
     block: |
       DNS=127.0.0.1
 
