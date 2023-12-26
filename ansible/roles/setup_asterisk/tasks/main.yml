@@ -5,3 +5,17 @@
     state: present
   become: true
 
+- name: Copy sip.conf
+  copy:
+    src: asterisk/sip.conf
+    dest: /etc/asterisk/
+
+- name: Copy extensions.conf
+  copy:
+    src: asterisk/extensions.conf
+    dest: /etc/asterisk/
+
+- name: Restart asterisk
+  systemd:
+    name: asterisk
+    state: restarted
