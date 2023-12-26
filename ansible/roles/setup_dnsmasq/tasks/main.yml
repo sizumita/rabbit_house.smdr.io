@@ -18,7 +18,6 @@
     block: |
       no-poll
       no-resolv
-      resolve-file=/etc/dnsmasq_resolv.conf
       listen-address=127.0.0.1
       listen-address=::1
       listen-address=172.16.20.1
