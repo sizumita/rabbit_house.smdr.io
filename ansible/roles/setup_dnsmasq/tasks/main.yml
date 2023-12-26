@@ -1,9 +1,9 @@
 ---
-#- name: Stop systemd-resolved
-#  systemd:
-#    name: systemd-resolved
-#    state: stopped
-#    enabled: false
+- name: Stop systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
 
 - name: Install dnsmasq
   apt:
@@ -16,20 +16,14 @@
   blockinfile:
     path: /etc/dnsmasq.conf
     block: |
-      no-poll
-      no-resolv
-      listen-address=127.0.0.1
-      listen-address=::1
       listen-address=172.16.20.1
+      resolv-file=/etc/dnsmasq_resolv.confx
+      log-queries
+      no-hosts
       conf-file=/etc/dnsmasq.rabbit-house.conf
+      bind-interfaces
       interface=eth0
-      no-dhcp-interface=
-
-- name: Write resolved conf
-  blockinfile:
-    path: /etc/systemd/resolved.conf
-    block: |
-      DNS=127.0.0.1
+      dhcp-range=172.16.10.1,255.255.255.0
 
 - name: Copy dnsmasq_resolv.conf
   copy:
@@ -62,20 +56,9 @@
     dest: /etc/systemd/system/
   become: true
 
-- name: Stop systemd-resolved
-  systemd:
-    name: systemd-resolved
-    state: stopped
-
 - name: Restart dnsmasq
   systemd:
     name: dnsmasq
-    state: restarted
-    enabled: true
-
-- name: Restart systemd-resolved
-  systemd:
-    name: systemd-resolved
     state: restarted
     enabled: true
 
