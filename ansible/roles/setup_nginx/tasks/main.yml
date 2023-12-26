@@ -1,0 +1,23 @@
+---
+- name: Install nginx
+  apt:
+    name:
+      - nginx
+    state: present
+  become: true
+
+- name: Allow port 80
+  ufw:
+    rule: allow
+    proto: any
+    to_port: 80
+
+- name: Copy 46xxsettings.txt
+  copy:
+    src: asterisk/46xxsettings.txt
+    dest: /var/www/html/
+
+- name: Copy 96x1Supgrade.txt
+  copy:
+    src: asterisk/96x1Supgrade.txt
+    dest: /var/www/html/

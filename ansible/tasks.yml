@@ -14,6 +14,10 @@
   import_role: name=setup_strongswan
   tags: swan
 
-- name: Setup dnsmasq
-  import_role: name=setup_dnsmasq
-  tags: dns
+#- name: Setup dnsmasq
+#  import_role: name=setup_dnsmasq
+#  tags: dns
+
+- name: Setup nginx
+  import_role: name=setup_nginx
+  tags: nginx

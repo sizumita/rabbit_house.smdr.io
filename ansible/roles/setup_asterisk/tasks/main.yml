@@ -1,0 +1,7 @@
+---
+- name: Install asterisk
+  apt:
+    name: asterisk
+    state: present
+  become: true
+

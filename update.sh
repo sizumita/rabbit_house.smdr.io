@@ -1,4 +1,3 @@
-systemctl stop dnsmasq
-systemctl restart systemd-resolved
+git pull
 ansible-playbook ansible/playbook.yml
 sudo systemctl restart tinc@gsnet.service
