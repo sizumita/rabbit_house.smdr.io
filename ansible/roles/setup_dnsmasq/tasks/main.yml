@@ -1,9 +1,9 @@
 ---
-- name: Stop systemd-resolved
-  systemd:
-    name: systemd-resolved
-    state: stopped
-    enabled: false
+#- name: Stop systemd-resolved
+#  systemd:
+#    name: systemd-resolved
+#    state: stopped
+#    enabled: false
 
 - name: Install dnsmasq
   apt:
@@ -12,23 +12,25 @@
     state: present
   become: true
 
-- name: Start dnsmasq
-  systemd:
-    name: dnsmasq
-    state: restarted
-    enabled: true
-
 - name: Write dnsmasq conf
   blockinfile:
     path: /etc/dnsmasq.conf
     block: |
+      no-resolv
+      no-poll
+      listen-address=127.0.0.1
+      listen-address=::1
       listen-address=172.16.20.1
-      resolve-file=/etc/dnsmasq_resolv.conf
-      no-hosts
       bind-interfaces
       conf-file=/etc/dnsmasq.rabbit-house.conf
       interface=eth0
-      dhcp-range=172.16.10.1,172.16.10.255
+      no-dhcp-interface=
+
+- name: Write resolved conf
+  blockinfile:
+    path: /etc/dnsmasq.conf
+    block: |
+      DNS=127.0.0.1
 
 - name: Copy dnsmasq_resolv.conf
   copy:
@@ -67,6 +69,18 @@
     src: dnsmasq/dnsmasq_adblock.timer
     dest: /etc/systemd/system/
   become: true
+
+- name: Restart dnsmasq
+  systemd:
+    name: dnsmasq
+    state: restarted
+    enabled: true
+
+- name: Restart systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: restarted
+    enabled: true
 
 - name: Enable and restart adblock
   systemd:
