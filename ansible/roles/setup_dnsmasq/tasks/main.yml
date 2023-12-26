@@ -16,12 +16,12 @@
   blockinfile:
     path: /etc/dnsmasq.conf
     block: |
-      no-resolv
+      no-hosts
       no-poll
+      resolve-file=/etc/dnsmasq_resolv.conf
       listen-address=127.0.0.1
       listen-address=::1
       listen-address=172.16.20.1
-      bind-interfaces
       conf-file=/etc/dnsmasq.rabbit-house.conf
       interface=eth0
       no-dhcp-interface=
@@ -69,6 +69,11 @@
     src: dnsmasq/dnsmasq_adblock.timer
     dest: /etc/systemd/system/
   become: true
+
+- name: Stop systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: stopped
 
 - name: Restart dnsmasq
   systemd:
