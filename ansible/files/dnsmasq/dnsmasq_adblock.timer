@@ -1,0 +1,8 @@
+[Unit]
+Description = timer adblock
+
+[Timer]
+OnUnitActiveSec=1d
+
+[Install]
+WantedBy=dnsmasq_adblock.target

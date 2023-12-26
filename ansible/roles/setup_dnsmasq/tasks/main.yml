@@ -1,0 +1,82 @@
+---
+- name: Stop systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+
+- name: Install dnsmasq
+  apt:
+    name:
+      - dnsmasq
+    state: present
+  become: true
+
+- name: Start dnsmasq
+  systemd:
+    name: dnsmasq
+    state: restarted
+    enabled: true
+
+- name: Write dnsmasq conf
+  blockinfile:
+    path: /etc/dnsmasq.conf
+    block: |
+      listen-address=172.16.20.1
+      resolve-file=/etc/dnsmasq_resolv.conf
+      no-hosts
+      bind-interfaces
+      conf-file=/etc/dnsmasq.rabbit-house.conf
+      interface=eth0
+      dhcp-range=172.16.10.1,172.16.10.255
+
+- name: Copy dnsmasq_resolv.conf
+  copy:
+    src: dnsmasq/dnsmasq_resolv.conf
+    dest: /etc/dnsmasq_resolv.conf
+    mode: 0644
+  become: true
+
+- name: Copy dnsmasq.rabbit-house.conf
+  copy:
+    src: dnsmasq/dnsmasq.rabbit-house.conf
+    dest: /etc/dnsmasq.rabbit-house.conf
+    mode: 0644
+  become: true
+
+- name: Copy dnsmasq_adblock.sh
+  copy:
+    src: dnsmasq/dnsmasq_adblock.sh
+    dest: /opt/
+  become: true
+
+- name: Copy additional_hosts.txt
+  copy:
+    src: dnsmasq/additional_hosts.txt
+    dest: /opt/
+  become: true
+
+- name: Copy dnsmasq_adblock.service
+  copy:
+    src: dnsmasq/dnsmasq_adblock.service
+    dest: /etc/systemd/system/
+  become: true
+
+- name: Copy dnsmasq_adblock.timer
+  copy:
+    src: dnsmasq/dnsmasq_adblock.timer
+    dest: /etc/systemd/system/
+  become: true
+
+- name: Enable and restart adblock
+  systemd:
+    name: dnsmasq_adblock
+    state: restarted
+    enabled: true
+  become: true
+
+- name: Allow port 53
+  ufw:
+    rule: allow
+    proto: any
+    to_port: 53

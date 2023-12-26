@@ -1,0 +1,9 @@
+[Unit]
+Description = dnsmasq adblock service
+
+[Service]
+ExecStart = /bin/bash /opt/dnsmasq_adblock.sh
+Type = simple
+
+[Install]
+WantedBy=multi-user.target

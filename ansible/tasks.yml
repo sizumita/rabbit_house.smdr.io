@@ -13,3 +13,7 @@
 - name: Setup strongswan
   import_role: name=setup_strongswan
   tags: swan
+
+- name: Setup dnsmasq
+  import_role: name=setup_dnsmasq
+  tags: dns
