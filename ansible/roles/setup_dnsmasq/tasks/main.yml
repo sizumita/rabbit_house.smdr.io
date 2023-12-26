@@ -38,13 +38,6 @@
     mode: 0644
   become: true
 
-- name: Copy dnsmasq.rabbit-house.conf
-  copy:
-    src: dnsmasq/dnsmasq.rabbit-house.conf
-    dest: /etc/dnsmasq.rabbit-house.conf
-    mode: 0644
-  become: true
-
 - name: Copy dnsmasq_adblock.sh
   copy:
     src: dnsmasq/dnsmasq_adblock.sh
