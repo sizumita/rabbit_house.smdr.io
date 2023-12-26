@@ -16,8 +16,8 @@
   blockinfile:
     path: /etc/dnsmasq.conf
     block: |
-      no-hosts
       no-poll
+      no-resolv
       resolve-file=/etc/dnsmasq_resolv.conf
       listen-address=127.0.0.1
       listen-address=::1
