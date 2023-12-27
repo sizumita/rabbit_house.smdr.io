@@ -1,2 +1,4 @@
 *.pem
 Client.p12
+driver/*
+!driver/.keep
