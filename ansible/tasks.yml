@@ -21,3 +21,7 @@
 - name: Setup nginx
   import_role: name=setup_nginx
   tags: nginx
+
+- name: Setup printer
+  import_role: name=setup_printer
+  tags: printer
