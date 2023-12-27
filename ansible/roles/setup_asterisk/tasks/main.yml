@@ -8,12 +8,18 @@
 - name: Copy sip.conf
   copy:
     src: asterisk/sip.conf
-    dest: /etc/asterisk/
+    dest: /var/lib/asterisk/sounds/
+
 
 - name: Copy extensions.conf
   copy:
     src: asterisk/extensions.conf
     dest: /etc/asterisk/
+
+- name: Copy voices
+  copy:
+    src: asterisk/custom
+    dest: /var/lib/asterisk/sounds/custom
 
 - name: Restart asterisk
   systemd:
