@@ -19,7 +19,7 @@
 - name: Copy voices
   copy:
     src: asterisk/custom
-    dest: /var/lib/asterisk/sounds/custom
+    dest: /var/lib/asterisk/sounds
 
 - name: Restart asterisk
   systemd:
