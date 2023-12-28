@@ -9,3 +9,4 @@
 
 - scpか何かで、Star_CUPS_Driver-3.14.0_linux.tarをdriverディレクトリにコピー
 - bash install_driver.sh
+- secrets/OPENAI_API_KEY.txtを作る

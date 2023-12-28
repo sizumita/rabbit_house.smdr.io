@@ -1,7 +1,9 @@
 ---
 - name: Install asterisk
   apt:
-    name: asterisk
+    name:
+      - asterisk
+      - jq
     state: present
   become: true
 
@@ -20,6 +22,11 @@
   copy:
     src: asterisk/custom
     dest: /var/lib/asterisk/sounds
+
+- name: Copy shell script
+  copy:
+    src: asterisk/chatgpt
+    dest: /opt/
 
 - name: Restart asterisk
   systemd:
