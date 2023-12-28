@@ -1,9 +1,14 @@
 ---
-- name: Install cups
+- name: Install cups and others
   apt:
     name:
       - cups
       - cups-client
+      - pandoc
+      - texlive-luatex
+      - texlive-lang-cjk
+      - lmodern
+      - texlive-xetex
     state: present
   become: true
 
@@ -11,6 +16,12 @@
   copy:
     src: printer/printers.conf
     dest: /etc/cups/
+  become: true
+
+- name: Copy ppd
+  copy:
+    src: printer/ppd/sumidora.ppd
+    dest: /etc/cups/ppd/
   become: true
 
 - name: Restart cups
