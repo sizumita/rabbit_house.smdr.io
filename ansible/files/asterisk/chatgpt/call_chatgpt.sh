@@ -2,6 +2,7 @@ UNIQUE_ID=$1
 echo "started" >> /var/log/gpt.log
 TMPDIR="/tmp"
 TMP_FILE="$(mktemp -d gpt-XXXXX)"
+API_KEY=$(cat /root/rabbit_house.smdr.io/secrets/OPENAI_API_KEY.txt)
 
 if [ ! -e /var/spool/asterisk/recordings/call-$UNIQUE_ID.wav ]; then
   echo "File not found"
@@ -9,7 +10,7 @@ if [ ! -e /var/spool/asterisk/recordings/call-$UNIQUE_ID.wav ]; then
 fi
 
 TEXT="$(curl -sL https://api.openai.com/v1/audio/transcriptions \
-          -H "Authorization: Bearer $(cat /root/rabbit_house.smdr.io/secrets/OPENAI_API_KEY.txt)" \
+          -H "Authorization: Bearer $API_KEY" \
           -H "Content-Type: multipart/form-data" \
           -F language="ja" \
           -F response_format="text" \
@@ -31,7 +32,7 @@ echo "> $(echo $TEXT)" >> $TMP_FILE/data.md
 echo "" >> $TMP_FILE/data.md
 
 RESPONSE_TEXT="$(curl -sL https://api.openai.com/v1/chat/completions \
-          -H "Authorization: Bearer $(cat /root/rabbit_house.smdr.io/secrets/OPENAI_API_KEY.txt)" \
+          -H "Authorization: Bearer $API_KEY" \
           -H "Content-Type: application/json" \
           -d '{
               "model": "gpt-4",
