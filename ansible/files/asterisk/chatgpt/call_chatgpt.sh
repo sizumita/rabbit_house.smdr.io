@@ -1,6 +1,12 @@
 UNIQUE_ID=$1
+echo "started" >> /var/log/gpt.log
 TMPDIR="/tmp"
 TMP_FILE="$(mktemp -d gpt-XXXXX)"
+
+if [ ! -e /var/spool/asterisk/recordings/call-$UNIQUE_ID.wav ]; then
+  echo "File not found"
+  exit 1
+fi
 
 TEXT="$(curl -sL https://api.openai.com/v1/audio/transcriptions \
           -H "Authorization: Bearer $(cat /root/rabbit_house.smdr.io/secrets/OPENAI_API_KEY.txt)" \
