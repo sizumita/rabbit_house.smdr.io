@@ -6,12 +6,6 @@
     state: present
   become: true
 
-- name: Allow port 80
-  ufw:
-    rule: allow
-    proto: any
-    to_port: 80
-
 - name: Copy nginx.conf
   copy:
     src: nginx/nginx.conf
@@ -23,7 +17,7 @@
 
 - name: Unarchive web
   unarchive:
-    src: https://github.com/sizumita/rabbit_house.smdr.io/releases/download/{{ tag }}/out.zip
+    src: https://github.com/sizumita/rabbit_house.smdr.io/releases/download/{{ tag.stdout }}/out.zip
     dest: /var/www/html
     remote_src: yes
 
