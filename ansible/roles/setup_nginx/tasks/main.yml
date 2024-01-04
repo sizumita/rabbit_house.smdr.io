@@ -12,12 +12,7 @@
     proto: any
     to_port: 80
 
-- name: Copy 46xxsettings.txt
+- name: Copy nginx.conf
   copy:
-    src: asterisk/46xxsettings.txt
-    dest: /var/www/html/
-
-- name: Copy 96x1Supgrade.txt
-  copy:
-    src: asterisk/96x1Supgrade.txt
-    dest: /var/www/html/
+    src: nginx/nginx.conf
+    dest: /etc/nginx/
