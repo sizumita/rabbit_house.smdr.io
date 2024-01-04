@@ -51,6 +51,5 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: "Web page release ${{ github.ref }}"
           files: |
-            out.zip
+            web/out.zip
