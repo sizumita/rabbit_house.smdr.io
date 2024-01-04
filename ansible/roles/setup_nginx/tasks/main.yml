@@ -8,8 +8,8 @@
 
 - name: Copy nginx.conf
   copy:
-    src: nginx/nginx.conf
-    dest: /etc/nginx/
+    src: nginx/next.conf
+    dest: /etc/nginx/conf.d/
 
 - name: get last tag name
   shell: git describe --abbrev=0 --tags
@@ -18,7 +18,7 @@
 - name: Unarchive web
   unarchive:
     src: https://github.com/sizumita/rabbit_house.smdr.io/releases/download/{{ tag.stdout }}/out.zip
-    dest: /var/www/html
+    dest: /var/www/
     remote_src: yes
 
 - name: restart nginx
