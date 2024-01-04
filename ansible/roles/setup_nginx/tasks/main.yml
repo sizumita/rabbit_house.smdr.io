@@ -16,3 +16,19 @@
   copy:
     src: nginx/nginx.conf
     dest: /etc/nginx/
+
+- name: get last tag name
+  shell: git describe --abbrev=0 --tags
+  register: tag
+
+- name: Unarchive web
+  unarchive:
+    src: https://github.com/sizumita/rabbit_house.smdr.io/releases/download/{{ tag }}/out.zip
+    dest: /var/www/html
+    remote_src: yes
+
+- name: restart nginx
+  systemd:
+    state: restarted
+    name: nginx
+  become: true
