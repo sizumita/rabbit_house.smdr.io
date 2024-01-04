@@ -20,6 +20,7 @@
     src: https://github.com/sizumita/rabbit_house.smdr.io/releases/download/{{ tag.stdout }}/out.zip
     dest: /var/www/
     remote_src: yes
+  when: tag.changed
 
 - name: restart nginx
   systemd:
