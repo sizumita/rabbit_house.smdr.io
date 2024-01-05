@@ -51,6 +51,17 @@
     dest: /etc/systemd/system/
   become: true
 
+- name: Copy 99-rabbit-house.yaml
+  copy:
+    src: dnsmasq/99-rabbit-house.yaml
+    dest: /etc/netplan/
+  become: true
+
+- name: Restart netplan
+  command:
+    cmd: netplan apply
+  become: true
+
 - name: Enable and restart adblock
   systemd:
     name: dnsmasq_adblock
