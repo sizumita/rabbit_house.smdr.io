@@ -15,6 +15,7 @@
       resolv-file=/etc/dnsmasq_resolv.conf
       log-queries
       no-hosts
+      addn-hosts=/etc/hosts_dnsmasq
       bind-interfaces
       conf-file=/etc/dnsmasq.rabbit-house.conf
       interface=eth0
@@ -24,6 +25,13 @@
   copy:
     src: dnsmasq/dnsmasq_resolv.conf
     dest: /etc/dnsmasq_resolv.conf
+    mode: 0644
+  become: true
+
+- name: Copy hosts_dnsmasq
+  copy:
+    src: dnsmasq/hosts_dnsmasq
+    dest: /etc/hosts_dnsmasq
     mode: 0644
   become: true
 
