@@ -13,8 +13,16 @@
 
 ## VPN設定のダウンロード
 
+証明書作る
+
 ```bash
-scp root@rabbit-house.smdr.io:~/rabbit_house.smdr.io/Client.p12 ./
+bash create-client.sh OOO@smdr.io
+```
+
+それを落とす
+
+```bash
+scp root@rabbit-house.smdr.io:~/rabbit_house.smdr.io/Client-OOO@smdr.io.p12 ./
 ```
 
 証明書の信頼を忘れずに！
