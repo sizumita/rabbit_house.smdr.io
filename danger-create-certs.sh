@@ -18,7 +18,7 @@ ipsec pki --pub --in ./ansible/files/certificate/strongSwan/client-key.pem --typ
   | ipsec pki --issue --lifetime 730 --outform pem \
   --cacert ./ansible/files/certificate/strongSwan/ca-cert.pem \
   --cakey ./ansible/files/certificate/strongSwan/ca-key.pem \
-  --dn "C=CH, O=strongSwan, CN=sumito@izumita.com" \
+  --dn "C=CH, O=strongSwan, CN=main@smdr.io" \
   --san sumito@izumita.com \
   > ./ansible/files/certificate/strongSwan/client-cert.pem
 

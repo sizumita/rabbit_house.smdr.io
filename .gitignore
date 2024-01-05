@@ -1,5 +1,5 @@
 *.pem
-Client.p12
+*.p12
 driver/*
 !driver/.keep
 secrets/*
