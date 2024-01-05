@@ -24,9 +24,12 @@ make_work_dir(){
 download_adlist(){
   local result=`curl -LI "$1" -w '%{http_code}\n' -s -o /dev/null`
   if [ ! $result -eq 200 ];then
-    echo "Not found URL."
-    echo $1
-    return 1
+    local result2=`curl -LI "$1" -w '%{http_code}\n' -s -o /dev/null`
+    if [ ! $result2 -eq 200 ];then
+      echo "Not found URL."
+      echo $1
+      return 1
+    fi
   fi
   local src=`curl -s "$1"`
   format "$src" "$2"

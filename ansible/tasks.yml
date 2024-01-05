@@ -25,3 +25,7 @@
 - name: Setup printer
   import_role: name=setup_printer
   tags: printer
+
+- name: Setup dns
+  import_role: name=setup_dnsmasq
+  tags: dns
