@@ -1,4 +1,5 @@
 rm -rf ansible/files/certificate/strongSwan/*.pem
+rm -rf Client.p12
 sudo ipsec pki --gen --type rsa --size 4096 --outform pem > ./ansible/files/certificate/strongSwan/ca-key.pem
 sudo ipsec pki --self --ca --lifetime 3650 --in ./ansible/files/certificate/strongSwan/ca-key.pem --type rsa --dn "CN=Rabbit House VPN root CA" --outform pem > ./ansible/files/certificate/strongSwan/ca-cert.pem
 

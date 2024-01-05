@@ -50,7 +50,7 @@
 - name: Copy client key
   copy:
     src: certificate/strongSwan/client-key.pem
-    dest: /etc/swanctl/private/
+    dest: /etc/swanctl/rsa/
     mode: 0700
   become: true
 
