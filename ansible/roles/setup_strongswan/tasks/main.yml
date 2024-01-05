@@ -71,6 +71,7 @@
     dest: /etc/ufw/
     mode: 0640
   become: true
+  register: before_rule
 
 - name: Copy ufw sysctl.conf
   copy:
@@ -82,3 +83,4 @@
 - name: Restart ufw
   ufw:
     state: enabled
+  when: before_rule.changed
