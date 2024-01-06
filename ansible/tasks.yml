@@ -36,3 +36,8 @@
 - name: Setup dns
   import_role: name=setup_dnsmasq
   tags: dns
+
+- name: enable ufw
+  systemd:
+    name: ufw.service
+    enabled: true
