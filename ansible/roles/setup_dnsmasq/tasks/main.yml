@@ -10,16 +10,14 @@
   blockinfile:
     path: /etc/dnsmasq.conf
     block: |
-      port=53
       listen-address=172.16.20.1
       resolv-file=/etc/dnsmasq_resolv.conf
       log-queries
-      no-hosts
+      #no-hosts
       addn-hosts=/etc/hosts_dnsmasq
       bind-interfaces
       conf-file=/etc/dnsmasq.rabbit-house.conf
-      interface=eth0
-      dhcp-range=172.16.10.1,255.255.255.0
+      interface=gsnet
 
 - name: Copy dnsmasq_resolv.conf
   copy:

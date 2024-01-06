@@ -6,6 +6,13 @@
     state: latest
   become: yes
 
+- name: Allow port 22
+  ufw:
+    rule: allow
+    state: enabled
+    proto: any
+    to_port: 22
+
 - name: Setup tinc
   import_role: name=setup_tinc
   tags: tinc
@@ -29,3 +36,8 @@
 - name: Setup dns
   import_role: name=setup_dnsmasq
   tags: dns
+
+- name: enable ufw
+  systemd:
+    name: ufw.service
+    enabled: true
