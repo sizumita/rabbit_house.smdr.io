@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   tasks:
-    - run_tasks:
+    - name: run_tasks
       import_tasks:
         file: tasks.yml
     - block:
