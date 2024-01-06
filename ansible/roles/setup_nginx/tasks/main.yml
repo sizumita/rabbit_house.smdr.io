@@ -3,6 +3,7 @@
   apt:
     name:
       - nginx
+      - fcgiwrap
     state: present
   become: true
 
