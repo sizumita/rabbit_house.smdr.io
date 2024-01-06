@@ -1,0 +1,36 @@
+#!/bin/bash
+Addresses="$(curl -s https://scrapbox.io/api/table/Geek-SpaceBox/%E9%97%87%E3%83%8D%E3%83%83%E3%83%88%E3%81%AE%E3%83%9B%E3%82%B9%E3%83%88%E4%B8%80%E8%A6%A7/hosts.csv | cut -d ',' -f 2 | tr -d '[]' | grep '10.')"
+
+function ping_check() {
+    local server=$1
+    # pingコマンドを使用してサーバーにpingを送信
+    # -c 1 は1回のpingのみ送信することを意味します
+    # > /dev/null は出力を無視することを意味します
+    if ping -c 1 "$server" > /dev/null 2>&1; then
+      echo 1
+    else
+      echo 0
+    fi
+}
+
+mkdir -p /var/gsnet/
+
+# ここからループ
+echo "$Addresses" | while read -r line
+do
+  CHECK=$(ping_check "$line")
+  if [ $CHECK = 1 ]; then
+    STATUS=$(curl "http://$line" -o /dev/null -w '%{http_code}\n' -s)
+
+    if [ $STATUS -ge 200 ] && [ $STATUS -lt 300 ]; then
+      echo "$line,1" >> /var/gsnet/hosts.csv.tmp
+      echo "$line is found, and it have homepage."
+    else
+      echo "$line,0" >> /var/gsnet/hosts.csv.tmp
+      echo "$line is found, but it doesn't have homepage."
+    fi
+  fi
+done
+
+cat /var/gsnet/hosts.csv.tmp > /var/gsnet/hosts.csv
+rm -rf /var/gsnet/hosts.csv.tmp

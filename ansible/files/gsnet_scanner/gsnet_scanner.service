@@ -1,0 +1,9 @@
+[Unit]
+Description = gsnet scanner
+
+[Service]
+ExecStart = /usr/local/bin/gsnet_scanner
+Type = simple
+
+[Install]
+WantedBy=multi-user.target

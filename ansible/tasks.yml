@@ -37,6 +37,10 @@
   import_role: name=setup_dnsmasq
   tags: dns
 
+- name: Setup scanner
+  import_role: name=setup_gsnet_scanner
+  tags: scanner
+
 - name: enable ufw
   systemd:
     name: ufw.service

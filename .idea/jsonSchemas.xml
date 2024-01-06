@@ -26,6 +26,9 @@
                   <Item>
                     <option name="path" value="ansible/roles/setup_asterisk/tasks/main.yml" />
                   </Item>
+                  <Item>
+                    <option name="path" value="ansible/roles/setup_gsnet_scanner/tasks/main.yml" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>

@@ -1,0 +1,26 @@
+---
+- name: Copy gsnet_scanner.sh
+  copy:
+    src: gsnet_scanner/gsnet_scanner
+    mode: 777
+    dest: /usr/local/bin
+  become: true
+
+- name: Copy dnsmasq_adblock.service
+  copy:
+    src: gsnet_scanner/gsnet_scanner.service
+    dest: /etc/systemd/system/
+  become: true
+
+- name: Copy gsnet_scanner.timer
+  copy:
+    src: gsnet_scanner/gsnet_scanner.timer
+    dest: /etc/systemd/system/
+  become: true
+
+- name: Enable and restart scanner
+  systemd:
+    name: gsnet_scanner
+    state: restarted
+    enabled: true
+  become: true
