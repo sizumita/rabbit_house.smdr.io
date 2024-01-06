@@ -3,4 +3,12 @@
   hosts: localhost
   connection: local
   tasks:
-    - include: tasks.yml
+    - run_tasks:
+      import_tasks:
+        file: tasks.yml
+    - block:
+      always:
+        - name: enable ufw
+          systemd:
+            name: ufw.service
+            enabled: true
