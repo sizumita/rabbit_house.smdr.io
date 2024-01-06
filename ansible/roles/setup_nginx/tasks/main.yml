@@ -23,6 +23,10 @@
     remote_src: yes
   when: tag.changed
 
+- name: Change permission
+  shell: chmod +x /var/www/out/cgi-bin/
+  become: true
+
 - name: restart nginx
   systemd:
     state: restarted
