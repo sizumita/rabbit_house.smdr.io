@@ -19,6 +19,6 @@ export function useHosts(): Host[] {
 }
 
 async function fetchHosts() {
-    const response = await fetch("/cdn-cgi/hosts.cgi")
+    const response = await fetch("/cgi-bin/hosts.cgi")
     return response.ok ? (await response.json() as Host[]) : []
 }
