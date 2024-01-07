@@ -48,8 +48,8 @@ except Exception as e:
     htmlText = f'''
     <!DOCTYPE html>
     <html>
-        <head><meta charset="shift-jis" /></head>
-    <body bgcolor="lightyellow">
+        <head><meta charset="utf-8" /></head>
+    <body>
         {ps}
     </body>
     </html>
