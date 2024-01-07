@@ -1,12 +1,8 @@
 import Image from 'next/image'
-import {ReactNode} from "react";
-import clsx from "clsx";
 import Link from "next/link";
+import Container from "@/app/_components/container";
+import {Hosts} from "@/app/_components/hosts";
 
-const Container = ({children, className}: {children: ReactNode, className?: string}) =>
-    <div className={clsx("bg-white border border-gray-100 rounded-lg p-4", className)}>
-    {children}
-</div>
 
 const Title = () => <Container>
     <div className={"h-32 flex md:max-w-xl"}>
@@ -60,6 +56,7 @@ export default function Home() {
               <SelfIntroduction />
               <About />
               <Services />
+              <Hosts />
               <Webring />
           </div>
     </main>
