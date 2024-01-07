@@ -21,26 +21,30 @@ try:
                 ip_list.append(row[0])
 
     to = queries["to"]
-    target = 0
 
-    for i, ip in enumerate(ip_list):
-        if ip == queries["ip"]:
-            if to == "before":
-                target = i - 1
-            elif to == "after":
-                target = i + 1
-            elif to == "before2":
-                target = i - 2
-            elif to == "after2":
-                target = i + 2
-            else:
-                target = i
-            break
+    if queries["ip"] not in ip_list:
+        print("Status 302 Found")
+        print(f"Location: http://{queries['ip']}")
+        print("")
+    else:
+        target = queries["ip"]
+        i = ip_list.index(queries["ip"])
+        if to == "before":
+            target = ip_list[i - 1]
+        elif to == "after":
+            target = ip_list[i + 1]
+        elif to == "before2":
+            target = ip_list[i - 2]
+        elif to == "after2":
+            target = ip_list[i + 2]
+        else:
+            target = queries["ip"]
 
-    print("Status 302 Found")
-    print(f"Location: http://{ip_list[target]}")
+        print("Status 302 Found")
+        print(f"Location: http://{target}")
+        print("")
 except Exception as e:
-    ps = "\n".join([f"<p>{i}</p>" for i in traceback.format_exc()])
+    ps = "\n".join([f"<p>{i}</p>" for i in traceback.format_exc().split("\n")])
     htmlText = f'''
     <!DOCTYPE html>
     <html>
@@ -50,7 +54,6 @@ except Exception as e:
     </body>
     </html>
     '''
-    print("Status 200 Ok")
     print("Content-Type: text/html")
-    print()
+    print('')
     print(htmlText)
