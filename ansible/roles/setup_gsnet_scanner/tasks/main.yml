@@ -20,7 +20,7 @@
 
 - name: Enable and restart scanner
   systemd:
-    name: gsnet_scanner
+    name: gsnet_scanner.timer
     state: restarted
     enabled: true
   become: true

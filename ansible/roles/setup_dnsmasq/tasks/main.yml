@@ -70,7 +70,7 @@
 
 - name: Enable and restart adblock
   systemd:
-    name: dnsmasq_adblock
+    name: dnsmasq_adblock.timer
     state: restarted
     enabled: true
   become: true
