@@ -1,6 +1,5 @@
 #!/bin/sh
 ip link set dev $INTERFACE nomaster
 ip link set dev $INTERFACE down
-ip link set dev eth1 nomaster
 ip link set dev br0 down
 ip link del dev br0
