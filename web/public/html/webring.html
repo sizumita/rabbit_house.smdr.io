@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script lang="javascript">
+        window.onload = function () {
+            const ip = new URL(parent.location.href).host
+            const before2 = document.getElementById("before2")
+            const before = document.getElementById("before")
+            const after = document.getElementById("after")
+            const after2 = document.getElementById("after2")
+            before2.setAttribute("href", `http://10.22.0.1/cgi-bin/webring.cgi?to=before2&ip=${ip}`)
+            before.setAttribute("href", `http://10.22.0.1/cgi-bin/webring.cgi?to=before&ip=${ip}`)
+            after.setAttribute("href", `http://10.22.0.1/cgi-bin/webring.cgi?to=after&ip=${ip}`)
+            after2.setAttribute("href", `http://10.22.0.1/cgi-bin/webring.cgi?to=after2&ip=${ip}`)
+        }
+    </script>
+    <style>
+        .webring {
+            text-align: center;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+        .webring a {
+            text-decoration: none;
+            font-size: 2em;
+        }
+    </style>
+    <title>Webring</title>
+</head>
+<body>
+<p class="webring">
+    <a id="before2" href="http://10.22.0.1/cgi-bin/webring.cgi?to=before2&ip=10.22.0.1">&#x23EA;</a>
+    &nbsp;<a id="before" href="http://10.22.0.1/cgi-bin/webring.cgi?to=before&ip=10.22.0.1">&#x25C0;&#xFE0F;</a>
+    &nbsp;<a id="after" href="http://10.22.0.1/cgi-bin/webring.cgi?to=after&ip=10.22.0.1">&#x25B6;&#xFE0F;</a>
+    &nbsp;<a id="after2" href="http://10.22.0.1/cgi-bin/webring.cgi?to=after2&ip=10.22.0.1">&#x23E9;</a>
+</p>
+</body>
+</html>
