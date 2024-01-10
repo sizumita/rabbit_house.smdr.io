@@ -50,15 +50,13 @@ const Webring = () => <Container className={"flex"}>
 
 export default function Home() {
   return (
-      <main className="min-h-screen bg-gray-200 p-2">
-          <div className={"grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-4 border-amber-600"}>
-              <Title />
-              <SelfIntroduction />
-              <About />
-              <Services />
-              <Hosts />
-              <Webring />
-          </div>
-    </main>
+      <main className={"grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-4 border-amber-600"}>
+          <Title/>
+          <SelfIntroduction/>
+          <About/>
+          <Services/>
+          <Hosts/>
+          <Webring/>
+      </main>
   )
 }

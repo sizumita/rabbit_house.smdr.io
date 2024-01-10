@@ -9,6 +9,7 @@
       - texlive-lang-cjk
       - lmodern
       - texlive-xetex
+      - qrencode
     state: present
   become: true
 
