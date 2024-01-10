@@ -9,6 +9,12 @@ const QRCodeCreator = () => {
         const formData = new FormData(event.currentTarget)
         const url = formData.get("url")
         if (url === null) return
+        if (url === "") {
+            setStatus("入力してください")
+            return
+        }
+        const flag = confirm(`"${url}" を印刷しますか？`)
+        if (!flag) return
         const response = await fetch(`/cgi-bin/print_qr.cgi?url=${url}`, {method: "POST"})
         if (response.ok) {
             setStatus("完了")
