@@ -35,6 +35,7 @@ const Services = () => <Container className={"sm:col-span-2 my-a"}>
         <h2 className={"font-bold text-2xl"}>このホストで稼働しているサービス</h2>
         <ul className={"list-disc list-inside"}>
             <li>Web App(Next.js Static Export + Nginx)(HTTP, TCP 80)</li>
+            <li><Link href={"/qr"}>QRコード印字サービス</Link></li>
         </ul>
     </div>
 </Container>
