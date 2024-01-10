@@ -19,10 +19,11 @@ const QRCodeCreator = () => {
 
     return <Container.Lg>
         <Container.Title>QRコード生成</Container.Title>
+        <p>テキストを入力して印刷ボタンを押すと、akadoxにあるサーマルプリンタからQRコードが印字されます。</p>
         <form onSubmit={onSubmit}>
             <div className="">
                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                    URL
+                    Text
                 </label>
                 <div className="mt-2">
                     <div
@@ -43,7 +44,7 @@ const QRCodeCreator = () => {
                     type="submit"
                     className="rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                 >
-                    Save
+                    印刷
                 </button>
             </div>
         </form>

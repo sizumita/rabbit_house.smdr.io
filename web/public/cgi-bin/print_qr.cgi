@@ -19,7 +19,7 @@ if qrcode.returncode != 0:
     print("")
     exit(0)
 
-printing = subprocess.run(["ip", "-d", "sumidora"], input=qrcode.stdout)
+printing = subprocess.run(["lp", "-d", "akadox", "-o", "page-bottom=20", "-o", "page-top=20", "-o", "TopMargin=2Millimeter3"], input=qrcode.stdout)
 
 if printing.returncode != 0:
     print("Status 400 Bad Request")
@@ -28,3 +28,4 @@ if printing.returncode != 0:
 
 print("Status 200 Ok")
 print("")
+print(f"code: {printing.returncode}")
